@@ -13,8 +13,14 @@ pipeline {
         stage('Deploy Image') {
             steps {
                 withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-                    sh 'docker push vrfuzetti/flask-api:$BUILD_NUMBER' 
+                    sh "docker push vrfuzetti/flask-api:$BUILD_NUMBER"
                 }
+            }
+        }
+
+        stage('Clean Workspace'){
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
     }
