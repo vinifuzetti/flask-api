@@ -4,16 +4,22 @@ pipeline {
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
-    agent { 
-        dockerfile {
-            additionalBuildArgs  '-t flask-api:$BUILD_NUMBER'
-        }
-    }
+    agent any
     stages {
+        stage('Building Image') {
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+
         stage('Deploy Image') {
             steps {
-                withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-                    sh "docker push vrfuzetti/flask-api:$BUILD_NUMBER"
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
                 }
             }
         }
