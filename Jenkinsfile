@@ -6,7 +6,6 @@ pipeline {
     }
     agent { 
         dockerfile {
-            label 'app pipeline'
             additionalBuildArgs  '-t flask-api:$BUILD_NUMBER'
         }
     }
