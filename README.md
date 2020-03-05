@@ -28,3 +28,5 @@ RUN apt-get update  -qq \
 RUN usermod -aG docker jenkins
 *
 ***************************************************************
+
+Subir os cluster ECS para container no dockerhub
