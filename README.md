@@ -29,4 +29,11 @@ RUN usermod -aG docker jenkins
 *
 ***************************************************************
 
-Subir os cluster ECS para container no dockerhub
+Na nova instancia de EC2, vamos fazer o deploy para o Docker Swarm
+> docker swarm init
+> docker stack deploy -c compose-api.yaml serv
+> docker service ls 
+
+Com o serviço no ar, teremos um arquivo de compose template (compose-api.yaml) para fazer update da imagem via Jenkins, através de um comando ssh:
+
+> docker service update --image vrfuzetti/flask-api:VERSION serv_flask-api
