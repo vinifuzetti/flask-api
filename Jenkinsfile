@@ -28,8 +28,8 @@ pipeline {
             steps {
                 script {
                     def remote = [:]
-                    remote.name = 'ec2-18-232-97-123'
-                    remote.host = 'ec2-18-232-97-123.compute-1.amazonaws.com'
+                    remote.name = 'ec2-3-81-59-56'
+                    remote.host = 'ec2-3-81-59-56.compute-1.amazonaws.com'
                     remote.allowAnyHosts = true
                     withCredentials([sshUserPrivateKey(credentialsId: 'aws-user', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
                         remote.user = userName
