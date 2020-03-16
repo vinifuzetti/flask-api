@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  flask-api:
+    image: vrfuzetti/flask-api:VERSION
+    ports:
+      - "5000:5000"
