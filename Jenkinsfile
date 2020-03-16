@@ -36,7 +36,7 @@ pipeline {
                         remote.identityFile = identity
                         sh("sed -i 's/VERSION/$BUILD_NUMBER/g' compose-api.yaml")
                         sshPut remote: remote, from: 'compose-api.yaml', into: '.'
-                        sshCommand remote: remote, command: "docker service update --image $registry:$BUILD_NUMBER serv_flask-api"
+                        sshCommand remote: remote, command: "sudo docker service update --image $registry:$BUILD_NUMBER serv_flask-api"
                         sshRemove remote: remote, path: 'compose-api.yaml'
                     }
                 }

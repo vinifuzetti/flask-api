@@ -36,4 +36,4 @@ Na nova instancia de EC2, vamos fazer o deploy para o Docker Swarm
 
 Com o serviço no ar, teremos um arquivo de compose template (compose-api.yaml) para fazer update da imagem via Jenkins, através de um comando ssh:
 
-> docker service update --image vrfuzetti/flask-api:VERSION serv_flask-api
+> sudo docker service update --image vrfuzetti/flask-api:VERSION serv_flask-api
