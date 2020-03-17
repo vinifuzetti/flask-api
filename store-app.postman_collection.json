@@ -1,0 +1,84 @@
+{
+	"variables": [],
+	"info": {
+		"name": "store-app",
+		"_postman_id": "975c0860-0231-74fe-2ea3-03a333954526",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "# GET /store",
+			"request": {
+				"url": "http://ec2-3-81-59-56.compute-1.amazonaws.com:5000/store",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "# GET /store/<string:name>",
+			"request": {
+				"url": "http://ec2-3-81-59-56.compute-1.amazonaws.com:5000/store/My%20Store",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "# GET /store/<string:name>/item",
+			"request": {
+				"url": "http://ec2-3-81-59-56.compute-1.amazonaws.com:5000/store/My%20Store/item",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "# POST /store data: {name:}",
+			"request": {
+				"url": "http://ec2-3-81-59-56.compute-1.amazonaws.com:5000/store",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Bookstore\"\r\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "# POST /store/<string:name>/item {name:, proce:}",
+			"request": {
+				"url": "http://ec2-3-81-59-56.compute-1.amazonaws.com:5000/store/Bookstore/item",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Unicorn Project\",\n\t\"price\": 80.00\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
