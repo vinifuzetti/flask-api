@@ -4,6 +4,7 @@ Store Application and pipeline
 
 Steps
 
+Pipeline - Jenkins image
 1. start docker (systemctl start docker)
 2. run Jenkins (docker run -d -p 80:8080 -v /home/ec2-user:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins-bomba)
 
