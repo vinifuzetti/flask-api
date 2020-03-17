@@ -1,18 +1,26 @@
 # flask-api
 API para projeto CI/CD
-Store Application
+Store Application and pipeline
 
-Ao conectar maquina Jenkins: ec2-************-199.compute-1.amazonaws.com
+Steps
 
-start docker (systemctl start docker)
-docker run -d -p 80:8080 -v /home/ec2-user:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins-bomba
+1. start docker (systemctl start docker)
+2. run Jenkins (docker run -d -p 80:8080 -v /home/ec2-user:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins-bomba)
 
 Admin Jenkins:
-tratore
-admin123
-Build docker image (Jenkins com docker client)
+tratore/admin123
+
+Application Instance EC2 - Deploy to Docker Swarm
+1. start swarm (docker swarm init)
+2. start service (docker stack deploy -c compose-api.yaml serv)
+3. list services (docker service ls)
+
+4. Update image from Jenkins, through ssh (sudo docker service update --image vrfuzetti/flask-api:VERSION serv_flask-api)
+
+---------------------------------------------------------------------------------------------------------------
+
+Build Jenkins image - custom
 ***************************************************************
-*
 from jenkinsci/jenkins:lts
  
 USER root
@@ -26,14 +34,4 @@ RUN add-apt-repository \
 RUN apt-get update  -qq \
     && apt-get install docker-ce=17.12.1~ce-0~debian -y
 RUN usermod -aG docker jenkins
-*
 ***************************************************************
-
-Na nova instancia de EC2, vamos fazer o deploy para o Docker Swarm
-> docker swarm init
-> docker stack deploy -c compose-api.yaml serv
-> docker service ls 
-
-Com o serviço no ar, teremos um arquivo de compose template (compose-api.yaml) para fazer update da imagem via Jenkins, através de um comando ssh:
-
-> sudo docker service update --image vrfuzetti/flask-api:VERSION serv_flask-api
